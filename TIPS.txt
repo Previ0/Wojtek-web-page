@@ -14,4 +14,16 @@
 	1025px — 1200px: Desktops, large screens
 	1201px and more —  Extra large screens, TV
 @BEM
-class="block__element-modifier"
+class="block__element--modifier"
+
+Bad Example
+<div class="block--mod">...</div>
+
+Good Example
+<div class="block block--mod">...</div>
+  <div class="block block--size-big block--shadow-yes">...</div>
+
+@TOOLS
+Liveserver
+Scss
+Emmet
