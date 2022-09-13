@@ -1,0 +1,17 @@
+@COMMONLY USED RESOLUTION
+	1920x1080
+	1366x768
+	360x640
+	441x896
+	1536x864
+	375x667
+@BREAKPOINTS
+	(480px, 768px, 1024px, and 1280px)
+
+	320px — 480px: Mobile devices
+	481px — 768px: iPads, Tablets
+	769px — 1024px: Small screens, laptops
+	1025px — 1200px: Desktops, large screens
+	1201px and more —  Extra large screens, TV
+@BEM
+class="block__element-modifier"
