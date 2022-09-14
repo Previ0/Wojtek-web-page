@@ -25,5 +25,5 @@ Good Example
 
 @TOOLS
 Liveserver
-Scss
+Scss	https://czterytygodnie.pl/frontend/wprowadzenie-do-sass.html
 Emmet
