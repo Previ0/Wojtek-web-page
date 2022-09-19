@@ -1,0 +1,13 @@
+https://www.scribd.com/document/316704010/Want-Speed-Pass-by-Value
+
+@SIZE_T
+C/C++
+namespace std {
+    typedef unsigned int size_t;
+}
+Absolutnie nie.
+
+18.2/6:
+The type size_t is an implementation-defined unsigned integer type that is large enough to contain the size in bytes of any object.
+
+To, jaki typ jest w stanie przechować rozmiar każdego obiektu w bajtach, z oczywistych powodów silnie zależy od implementacji. Nie zawsze jest to unsigned int: na systemie, z którego piszę ten post, unsigned int ma 32 bity, a obiekty mogą być znacznie większe niż 2^32 bajtów, dlatego size_t to 64-bitowy unsigned long. Na 64-bitowym Windowsie size_t to unsigned long long (bo unsigned long ma tam 32 bity). Wydaje mi się też, że widziałem platformy, gdzie size_t był aliasem na unsigned short.
