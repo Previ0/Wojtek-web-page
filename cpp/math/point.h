@@ -25,7 +25,7 @@ public:
     @param[in] x - x coordinate.
     @param[in] y - y coordinate.
   */
-  Point(MATH_NUMERIC_TYPE x, MATH_NUMERIC_TYPE y);
+  Point(FL_TYPE x, FL_TYPE y);
   
   /*!
     @brief Point constructor.
@@ -34,7 +34,7 @@ public:
     @param[in] y - y coordinate.
     @param[in] z - z coordinate.
   */
-  Point(MATH_NUMERIC_TYPE x, MATH_NUMERIC_TYPE y, MATH_NUMERIC_TYPE z);
+  Point(FL_TYPE x, FL_TYPE y, FL_TYPE z);
   
   /*!
     @brief Point constructor.
@@ -65,19 +65,19 @@ template<int A>
 const int Point<A>::size_{ A };
 
 template<>
-Point<2>::Point(MATH_NUMERIC_TYPE x, MATH_NUMERIC_TYPE y) :
+Point<2>::Point(FL_TYPE x, FL_TYPE y) :
   coordinates_{x, y} {
     //std::cout << "Point<" << size_ << "> init." << std::endl;
 }
 
 template<>
-Point<3>::Point(MATH_NUMERIC_TYPE x, MATH_NUMERIC_TYPE y, MATH_NUMERIC_TYPE z) :
+Point<3>::Point(FL_TYPE x, FL_TYPE y, FL_TYPE z) :
   coordinates_{x, y, z} {
     //std::cout << "Point<" << size_ << "> init." << std::endl;
 }
 
 template<int A>
-Point<A>::Point(MATH_NUMERIC_TYPE x, MATH_NUMERIC_TYPE y) :
+Point<A>::Point(FL_TYPE x, FL_TYPE y) :
   coordinates_{} {
     coordinates_[0] = x;
     coordinates_[1] = y;
@@ -85,7 +85,7 @@ Point<A>::Point(MATH_NUMERIC_TYPE x, MATH_NUMERIC_TYPE y) :
 }
 
 template<int A>
-Point<A>::Point(MATH_NUMERIC_TYPE x, MATH_NUMERIC_TYPE y, MATH_NUMERIC_TYPE z) :
+Point<A>::Point(FL_TYPE x, FL_TYPE y, FL_TYPE z) :
   coordinates_{} {
     coordinates_[0] = x;
     coordinates_[1] = y;
@@ -96,7 +96,7 @@ Point<A>::Point(MATH_NUMERIC_TYPE x, MATH_NUMERIC_TYPE y, MATH_NUMERIC_TYPE z) :
 template<int A>
 template<typename... B>
 Point<A>::Point(B... cords) {
-  MATH_NUMERIC_TYPE temp[] = {cords...};
+  FL_TYPE temp[] = {cords...};
     
   // copying A-number parameters to coordinates.
   for (int i = 0; i < A; i++) {
@@ -112,7 +112,7 @@ std::string Point<A>::ToString() const {
   
   // concatenating coordinates_
   for(int i = 0; i < size_-1; i++){
-      ss << coordinates_[i] << ", ";
+    ss << coordinates_[i] << ", ";
   }
   
   ss << coordinates_[size_-1] << ")";
