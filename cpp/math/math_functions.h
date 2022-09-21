@@ -3,9 +3,9 @@
 
 #include <cmath>
 #include <limits>
-#include math.h
+#include "math.h"
 
-// ref
+// Floating point comparisment - https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/
 
 namespace eMath {
 
@@ -13,11 +13,86 @@ namespace eMath {
 
   }
   
-  //TO-DO
-  //bool nearly_equal(FL_TYPE a, FL_TYPE b, FL_TYPE epsilon = )
+  /* FLOAT COMPARISMENT -----------------------------------------------------*/
+  
+  /*!
+    @brief Compares floating point number (epsilon is an absolute value).
+    
+    @description Epsilon has an absolute value. This comparison is not recommended for floating point numbers that are big.
+    
+    @param[in] a - floating point number.
+    @param[in] b - floating point number.
+    @param[in] epsilon - tolerance in which floating point numbers can differ, to be able to assume they are equal.
+    
+    @return True: If compared floats are nearly equal.
+            False: if compared floats are not equal.
+  */
+  bool nearly_equal_abs(float a,
+                        float b,
+                        float epsilon = std::numeric_limits<float>::epsilon())
+  {
+    return fabs(a - b) <= epsilon
+  }
 
-}
+  /*!
+    @brief Compares floating point number (epsilon is an relative value).
+    
+    @description Epsilon value changes accordingly to floating point numbers. This comparison is not recommended for floating point numbers that are approaching 0.
+    
+    @param[in] a - floating point number.
+    @param[in] b - floating point number.
+    @param[in] epsilon - tolerance in which floating point numbers can differ, to be able to assume they are equal.
+    
+    @return True: If compared floats are nearly equal.
+            False: if compared floats are not equal.
+  */
+  bool nearly_equal_rel(float a,
+                        float b,
+                        float epsilon = std::numeric_limits<float>::epsilon())
+  {
+    return fabs(a - b) <= epsilon * std::max(fabs(a), fabs(b));
+  }
+  
+  /*!
+    @brief Compares floating point number (combines relative and absolute epsilon comparisment).
+    
+    @description Cobines comparisment of floating point numbers with relative and absolute epsion value. It is preferable function to use when we do not know if the compared floats are nearly 0 or bigger.
+    
+    @param[in] a - floating point number.
+    @param[in] b - floating point number.
+    @param[in] absTolerance - absolute tolerance .
+    @param[in] relTolerance - relative tolerance scalar. 
+    
+    @return True: If compared floats are nearly equal.
+            False: if compared floats are not equal.
+  */
+  bool nearly_equal(float a, float b, float absTolerance, float relTolerance) {
+    return fabs(a - b) <= max(absTolerance, relTolerance * std::max(fabs(a), fabs(b)));
+  }
+  
+  /*!
+    @brief Compares floating point number (combines relative and absolute epsilon comparisment).
+    
+    @description Cobines comparisment of floating point numbers with relative and absolute epsion value. It is preferable function to use when we do not know if the compared floats are nearly 0 or bigger.
+    
+    @param[in] a - floating point number.
+    @param[in] b - floating point number.
+    @param[in] epsilon - tolerance in which floating point numbers can differ, to be able to assume they are equal.
+    
+    @return True: If compared floats are nearly equal.
+            False: if compared floats are not equal.
+  */
+  bool nearly_equal(float a,
+                    float b,
+                    float epsilon = std::numeric_limits<float>::epsilon())
+  {
+    return fabs(a - b) <= epsilon * std::max(1, std::max(fabs(a), fabs(b)));
+  }
+  
+} // !namespace eMath
 
+  
+  
 namespace eMathUtils {
   
    /*!
