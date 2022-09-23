@@ -25,3 +25,23 @@ static std::string StrUtils::ExtractBeetweenDelimiter(const std::string& inputSt
   }
   return temp;
 }
+
+
+//-----------------------------------------
+
+std::vector<std::string> SplitString(const std::string& input, char spliter = '\n') {
+    std::vector<std::string> strings;
+    
+    strings.emplace_back("");
+    
+    for(char ch : input) {
+        if(ch == spliter) {
+            if(strings[strings.size() - 1].size() == 0 || ch == input.back()) continue;
+            else strings.emplace_back("");
+        }
+        else {
+            strings[strings.size() - 1].append(1, ch);
+        }
+    }
+    return strings;
+}
